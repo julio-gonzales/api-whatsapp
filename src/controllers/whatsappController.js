@@ -51,20 +51,22 @@ const ReceivedMessage = (req, res) => {
 }
 
 const enviarMensaje = (req, res) => {
-    const { nombre, monto, nombrePartida,cantidadParticipantes, fechaInicio, number } = req.body;
+    let { nombre, monto, nombrePartida,cantidadParticipantes, fechaInicio, number } = req.body;
     try {
-        var text = `INVITACION A LA PARTIDA ${nombrePartida}
-        Estimado ${nombre}
-        nos complace invitarte a la partida de ${nombrePartida}
-        la cantidad de participantes es: ${cantidadParticipantes}
-        con un monto de: ${monto}
-        a inciarce el ${fechaInicio}
-        `;
+        var text = 
+`INVITACION A LA PARTIDA: ${nombrePartida}
+
+Estimado ${nombre}
+nos complace invitarte a la partida de ${nombrePartida}
+la cantidad de participantes es: ${cantidadParticipantes}
+con un monto de: ${monto}
+a inciarce el ${fechaInicio}
+`;
         var numero = number;
         whatsappService.SendMenssageWhatsapp(text, numero);
         res.send('EVENTE_RECEIVED')
     } catch (error) {
-        res.send('EVENT_RECEIVED')
+        res.send('EVENT_FAILLED')
     }
 }
 
