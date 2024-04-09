@@ -57,9 +57,9 @@ const enviarMensaje = (req, res) => {
 `INVITACION A LA PARTIDA: ${nombrePartida}
 
 Estimado ${nombre}
-nos complace invitarte a la partida de ${nombrePartida}
-la cantidad de participantes es: ${cantidadParticipantes}
-con un monto de: ${monto}
+nos complace invitarte a la partida de ${toString(nombrePartida).toUpperCase}
+**la cantidad de participantes es: ${cantidadParticipantes}**
+--con un monto de: ${monto}--
 a inciarce el ${fechaInicio}
 `;
         var numero = number;
