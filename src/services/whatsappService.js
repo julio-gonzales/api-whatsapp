@@ -1,8 +1,16 @@
 const { error } = require("console");
 const https = require("https");
 
-function SendMenssageWhatsapp(data){
-    
+function SendMenssageWhatsapp(textResponse, number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "text": {
+            "body": textResponse
+        },
+        "type": "text"
+    });
+
     const options = {
         host: "graph.facebook.com",
         path: "/v18.0/223853610820842/messages",
