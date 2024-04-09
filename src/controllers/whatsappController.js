@@ -26,11 +26,38 @@ const ReceivedMessage = (req, res) => {
         var value = changes["value"];
         var messageObject = value["messages"]
         console.log(messageObject);
+
+        var messages = messageObject[0];
+        var text = GetTextUser(messages);
         
         res.send('EVENT_RECEIVED')
     } catch (e) {
         res.send('EVENT_RECEIVED');
     }
+}
+
+function GetTextUser(messages){
+    var text = "";
+    var typeMessage = messages["type"];
+
+    if (typeMessage == "text"){
+        text = (messages["text"])["body"]
+    } else if (typeMessage == "interactive" ) {
+        var interactiveObject = messages["interactive"];
+        var typeInteractive  = interactiveObject["type"];
+    myConsole.log(interactiveObject);
+        if (typeInteractive == "button_reply"){
+            text = (interactiveObject["button_reply"])["title"];
+        } else if (typeInteractive == "list_reply"){
+            text = (interactiveObject["list_reply"])["title"];
+        } else {
+            myConsole.log("sin mensaje");
+        }
+    } else {
+        myConsole.log("sin mensaje");
+    }
+
+    return text;
 }
 
 
