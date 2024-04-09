@@ -1,19 +1,11 @@
 const { error } = require("console");
 const https = require("https");
 
-function SendMenssageWhatsapp(textResponse, number){
-    const data = JSON.stringify({
-        "messaging_product": "whatsapp",
-        "to": number,
-        "text": {
-            "body": textResponse
-        },
-        "type": "text"
-    });
-
+function SendMenssageWhatsapp(data){
+    
     const options = {
-        host: "api-whatsapp-4j15.onrender.com",
-        path: "/whatsapp",
+        host: "graph.facebook.com",
+        path: "/v18.0/223853610820842/messages",
         method: "POST",
         body: data,
         headers: {
@@ -26,7 +18,7 @@ function SendMenssageWhatsapp(textResponse, number){
         res.on("data", d => {
             process.stdout.write(d);
         });
-    })
+    });
 
     req.on("error", error => {
         console.error(error)
