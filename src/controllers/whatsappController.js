@@ -23,6 +23,8 @@ const VerifyToken = (req, res) => {
     }
 }
 
+
+
 const ReceivedMessage = (req, res) => {
     try {
         var entry = (req.body["entry"])[0];
@@ -32,7 +34,7 @@ const ReceivedMessage = (req, res) => {
         console.log(messageObject);
 
         if (typeof messageObject != "undefined"){
-            console.log("ingreso a enviar")
+            //console.log("ingreso a enviar")
             var messages = messageObject[0];
             var text = GetTextUser(messages);
             myConsole.log(text);
@@ -45,6 +47,24 @@ const ReceivedMessage = (req, res) => {
         res.send('EVENT_RECEIVED')
     } catch (e) {
         res.send('EVENT_RECEIVED');
+    }
+}
+
+const enviarMensaje = (req, res) => {
+    const { nombre, monto, nombrePartida,cantidadParticipantes, fechaInicio, number } = req.body;
+    try {
+        var text = `INVITACION A LA PARTIDA ${nombrePartida}
+        Estimado ${nombre}
+        nos complace invitarte a la partida de ${nombrePartida}
+        la cantidad de participantes es: ${cantidadParticipantes}
+        con un monto de: ${monto}
+        a inciarce el ${fechaInicio}
+        `;
+        var numero = number;
+        whatsappService.SendMenssageWhatsapp(text, numero);
+        res.send('EVENTE_RECEIVED')
+    } catch (error) {
+        res.send('EVENT_RECEIVED')
     }
 }
 
@@ -75,5 +95,6 @@ function GetTextUser(messages){
 
 module.exports = {
     VerifyToken,
-    ReceivedMessage
+    ReceivedMessage, 
+    enviarMensaje
 }
