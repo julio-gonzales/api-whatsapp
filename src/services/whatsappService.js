@@ -14,10 +14,10 @@ function sendMenssageWhatsapp(textResponse, number){
     const options = {
         host: "api-whatsapp-4j15.onrender.com",
         path: "/whatsapp",
-        method: "post",
+        method: "POST",
         body: data,
         headers: {
-            "content-type": "application/json",
+            "Content-Type": "application/json",
             Authorization: "Bearer EAAU35xyarp0BO3ROvaq9sDew5oJMJ12wfz14u87cp3qInhQ3y5CVVKiC71aZBANgAS3N4oILNCumPWuZAt1QID60zHfD0GmFeiKw8XTLXS81wk7kbW47Xpp0jZC9jeHRNZB8IC6qDplEB6nSgcd5ZBnUZAWNr62Rw5WU3uXcOD0CTDGxXoGvBJUhTZARwDMYn1CgloXdYmq9bv3vBlI6DYWy1YpAkBxkIG9AjCHQIAZD",
         }
     };
