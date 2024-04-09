@@ -27,9 +27,11 @@ const ReceivedMessage = (req, res) => {
         var messageObject = value["messages"]
         console.log(messageObject);
 
-        var messages = messageObject[0];
-        var text = GetTextUser(messages);
-        myConsole.log(text);
+        if (typeof messageObject != "undefined"){
+            var messages = messageObject[0];
+            var text = GetTextUser(messages);
+            myConsole.log(text);
+        }
         
         res.send('EVENT_RECEIVED')
     } catch (e) {
