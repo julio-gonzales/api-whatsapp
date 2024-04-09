@@ -1,7 +1,7 @@
 const VerifyToken = (req, res) => {
     try {
-        var accessToken = "FRKEMMDFLSDLFEFMVMFMVD";
-        var token = res.query["hub.verify_token"];
+        var accessToken = "FRK23EMMDFLSDLFEFMVMFMV565D4646";
+        var token = req.query["hub.verify_token"];
         var challenge = req.query["hub.challenge"];
 
         if (challenge != null && token != null && accessToken == token){
